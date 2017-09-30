@@ -4,6 +4,7 @@ import { Component, OnInit, HostListener } from '@angular/core';
 import { Cell } from './model/cell';
 import { Direction } from './model/direction';
 import { Observable } from 'rxjs/Rx';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-root',
@@ -16,6 +17,8 @@ export class AppComponent implements OnInit {
   snake: Snake[] = [];
   rowsCount: Number = 20;
   cellCount: Number = 20;
+  running = false;
+  gameSubscription: Subscription;
   direction: Direction = Direction.Left;
 
   @HostListener('window:keydown', ['$event'])
@@ -57,8 +60,13 @@ export class AppComponent implements OnInit {
   }
 
   startGame() {
-    const gameTimer = Observable.timer(1000, 400);
-    gameTimer.subscribe(() => this.movePlayer());
+    this.running = true;
+    this.gameSubscription = Observable.timer(1000, 100).subscribe(() => this.movePlayer());
+  }
+
+  stopGame() {
+    this.running = false;
+    this.gameSubscription.unsubscribe();
   }
 
   movePlayer() {
