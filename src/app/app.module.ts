@@ -6,13 +6,15 @@ import { AppComponent } from './app.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { SnakeComponent } from './snake/snake.component';
 import { GameOverComponent } from './game-over/game-over.component';
+import { LeaderBoardComponent } from './leader-board/leader-board.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavBarComponent,
     SnakeComponent,
-    GameOverComponent
+    GameOverComponent,
+    LeaderBoardComponent
   ],
   entryComponents: [
     GameOverComponent
