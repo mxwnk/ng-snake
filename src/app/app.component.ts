@@ -21,6 +21,9 @@ export class AppComponent implements OnInit {
     this.initPlayerModel();
   }
 
+  startGame() {
+  }
+
   private initPlayerModel() {
     for (let f = 0; f  < 4; f++) {
       this.rows[10].cells[10 - f] = Cell.Snake;
