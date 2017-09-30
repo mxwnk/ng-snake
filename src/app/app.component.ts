@@ -15,8 +15,8 @@ export class AppComponent implements OnInit {
 
   rows: Row[] = [];
   snake: Snake[] = [];
-  rowsCount: Number = 20;
-  cellCount: Number = 20;
+  rowsCount = 20;
+  cellCount = 20;
   running = false;
   gameSubscription: Subscription;
   direction: Direction = Direction.Left;
@@ -51,12 +51,10 @@ export class AppComponent implements OnInit {
     }
   }
 
-  constructor() {
-  }
-
   ngOnInit(): void {
     this.initGameField();
     this.initPlayerModel();
+    this.setNewFruit();
   }
 
   startGame() {
@@ -71,11 +69,25 @@ export class AppComponent implements OnInit {
 
   movePlayer() {
     const tail = this.snake[0];
-    this.snake.splice(0, 1);
-    this.rows[ tail.row ].cells[ tail.cell ] = Cell.Blank;
     const nextHead = this.getNextHead();
+    if (this.foundFruit(nextHead)) {
+      this.setNewFruit();
+    }else {
+      this.snake.splice(0, 1);
+      this.rows[tail.row].cells[tail.cell] = Cell.Blank;
+    }
+    this.rows[nextHead.row].cells[nextHead.cell] = Cell.Snake;
     this.snake.push(nextHead);
-    this.rows[nextHead.row].cells[ nextHead.cell ] = Cell.Snake;
+  }
+
+  private setNewFruit() {
+    const row = Math.floor(Math.random() * (this.rowsCount));
+    const cell = Math.floor(Math.random() * (this.cellCount));
+    if (this.rows[row].cells[cell] === Cell.Blank) {
+      this.rows[row].cells[cell] = Cell.Fruit;
+    } else {
+      this.setNewFruit();
+    }
   }
 
   private getNextHead(): Snake {
@@ -90,6 +102,10 @@ export class AppComponent implements OnInit {
       case Direction.Right:
         return new Snake(currentHead.row, currentHead.cell + 1);
     }
+  }
+
+  private foundFruit(nextHead: Snake): boolean {
+    return this.rows[nextHead.row].cells[nextHead.cell] === Cell.Fruit;
   }
 
   private initPlayerModel() {
