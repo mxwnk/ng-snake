@@ -1,6 +1,7 @@
 import { Row } from './model/row';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { Cell } from './model/cell';
+import { Direction } from './model/direction';
 
 @Component({
   selector: 'app-root',
@@ -12,6 +13,25 @@ export class AppComponent implements OnInit {
   rows: Row[] = [];
   rowsCount: Number = 20;
   cellCount: Number = 20;
+  direction: Direction = Direction.Left;
+
+  @HostListener('window:keydown', ['$event'])
+  keyboardInput(event: KeyboardEvent) {
+    switch (event.key) {
+      case 'ArrowUp':
+        this.direction = Direction.Up;
+        break;
+      case 'ArrowDown':
+        this.direction = Direction.Down;
+        break;
+      case 'ArrowLeft':
+        this.direction = Direction.Left;
+        break;
+      case 'ArrowRight':
+        this.direction = Direction.Right;
+        break;
+    }
+  }
 
   constructor() {
   }
@@ -25,7 +45,7 @@ export class AppComponent implements OnInit {
   }
 
   private initPlayerModel() {
-    for (let f = 0; f  < 4; f++) {
+    for (let f = 0; f < 4; f++) {
       this.rows[10].cells[10 - f] = Cell.Snake;
     }
   }
