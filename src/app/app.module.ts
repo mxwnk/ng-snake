@@ -1,3 +1,4 @@
+import { AppRoutingModule } from './routing/app.routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ModalModule } from 'ngx-bootstrap/modal';
@@ -18,6 +19,7 @@ import { GameOverComponent } from './game-over/game-over.component';
   ],
   imports: [
     BrowserModule,
+    AppRoutingModule,
     ModalModule.forRoot()
   ],
   providers: [],
