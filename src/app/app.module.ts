@@ -3,11 +3,13 @@ import { NgModule } from '@angular/core';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { AppComponent } from './app.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { SnakeComponent } from './snake/snake.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavBarComponent
+    NavBarComponent,
+    SnakeComponent
   ],
   imports: [
     BrowserModule,
