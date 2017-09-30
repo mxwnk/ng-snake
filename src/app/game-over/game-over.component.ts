@@ -1,3 +1,4 @@
+import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GameOverComponent implements OnInit {
 
-  constructor() { }
+  constructor(public gameOverModalRef: BsModalRef) { }
 
   ngOnInit() {
   }
