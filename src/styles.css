@@ -1,1 +1,35 @@
-/* You can add global styles to this file, and also import other style files */
+.text-center{
+    text-align: center;
+}
+
+.game{
+    margin: auto;
+    display: block;
+}
+
+.row{
+    display: flex;
+    margin: auto;
+}
+
+.cell{
+    border: 1px solid black;
+    width: 25px;
+    height: 25px;
+}
+
+.start-game-button{
+    margin-top: 30px;
+}
+
+.snake{
+    background: red;
+}
+
+.blank{
+    background: black;
+}
+
+.fruit{
+    background: green;
+}
