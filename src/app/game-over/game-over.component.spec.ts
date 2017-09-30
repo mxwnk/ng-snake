@@ -1,5 +1,6 @@
+import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { BsModalService } from 'ngx-bootstrap/modal';
 import { GameOverComponent } from './game-over.component';
 
 describe('GameOverComponent', () => {
@@ -8,7 +9,10 @@ describe('GameOverComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ GameOverComponent ]
+      declarations: [ GameOverComponent ],
+      providers: [
+        BsModalRef
+      ]
     })
     .compileComponents();
   }));

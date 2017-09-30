@@ -1,3 +1,5 @@
+import { GameOverComponent } from './../game-over/game-over.component';
+import { BsModalService } from 'ngx-bootstrap/modal';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SnakeComponent } from './snake.component';
@@ -8,9 +10,14 @@ describe('SnakeComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SnakeComponent ]
-    })
-    .compileComponents();
+      declarations: [
+        SnakeComponent,
+        GameOverComponent
+      ],
+      providers: [
+        { provide: BsModalService, useValue: true }
+      ],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -22,4 +29,5 @@ describe('SnakeComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
 });
