@@ -1,3 +1,4 @@
+import { GameOverComponent } from './../game-over/game-over.component';
 import { Snake } from '../model/snake';
 import { Row } from '../model/row';
 import { Component, OnInit, HostListener } from '@angular/core';
@@ -5,6 +6,8 @@ import { Cell } from '../model/cell';
 import { Direction } from '../model/direction';
 import { Observable } from 'rxjs/Rx';
 import { Subscription } from 'rxjs/Subscription';
+import { BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 
 @Component({
   selector: 'app-snake',
@@ -20,6 +23,7 @@ export class SnakeComponent implements OnInit {
   running = false;
   gameSubscription: Subscription;
   direction: Direction = Direction.Left;
+  gameOverModal: BsModalRef;
 
   @HostListener('window:keydown', ['$event'])
   keyboardInput(event: KeyboardEvent) {
@@ -51,6 +55,8 @@ export class SnakeComponent implements OnInit {
     }
   }
 
+  constructor(private modalService: BsModalService) {}
+
   ngOnInit(): void {
     this.initGameField();
     this.initPlayerModel();
@@ -71,7 +77,7 @@ export class SnakeComponent implements OnInit {
     const tail = this.snake[0];
     const nextHead = this.getNextHead();
     if (this.isGameOver(nextHead)) {
-      alert('Game over!');
+      this.gameOverModal = this.modalService.show(GameOverComponent);
       this.stopGame();
       return;
     }

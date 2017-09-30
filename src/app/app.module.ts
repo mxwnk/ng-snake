@@ -4,12 +4,17 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { AppComponent } from './app.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { SnakeComponent } from './snake/snake.component';
+import { GameOverComponent } from './game-over/game-over.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavBarComponent,
-    SnakeComponent
+    SnakeComponent,
+    GameOverComponent
+  ],
+  entryComponents: [
+    GameOverComponent
   ],
   imports: [
     BrowserModule,
