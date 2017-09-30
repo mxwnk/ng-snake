@@ -70,6 +70,11 @@ export class AppComponent implements OnInit {
   movePlayer() {
     const tail = this.snake[0];
     const nextHead = this.getNextHead();
+    if (this.isGameOver(nextHead)) {
+      alert('Game over!');
+      this.stopGame();
+      return;
+    }
     if (this.foundFruit(nextHead)) {
       this.setNewFruit();
     }else {
@@ -102,6 +107,20 @@ export class AppComponent implements OnInit {
       case Direction.Right:
         return new Snake(currentHead.row, currentHead.cell + 1);
     }
+  }
+
+  private isGameOver(nextHead: Snake): boolean {
+    if (nextHead.cell > this.cellCount || nextHead.cell < 0) {
+      return true;
+    }
+    if (nextHead.row > this.rowsCount || nextHead.row < 0) {
+      return true;
+    }
+    const nextGameField = this.rows[nextHead.row].cells[nextHead.cell];
+    if (nextGameField === Cell.Snake) {
+      return true;
+    }
+    return false;
   }
 
   private foundFruit(nextHead: Snake): boolean {
