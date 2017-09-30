@@ -1,7 +1,9 @@
+import { Snake } from './model/snake';
 import { Row } from './model/row';
 import { Component, OnInit, HostListener } from '@angular/core';
 import { Cell } from './model/cell';
 import { Direction } from './model/direction';
+import { Observable } from 'rxjs/Rx';
 
 @Component({
   selector: 'app-root',
@@ -11,6 +13,7 @@ import { Direction } from './model/direction';
 export class AppComponent implements OnInit {
 
   rows: Row[] = [];
+  snake: Snake[] = [];
   rowsCount: Number = 20;
   cellCount: Number = 20;
   direction: Direction = Direction.Left;
@@ -19,15 +22,27 @@ export class AppComponent implements OnInit {
   keyboardInput(event: KeyboardEvent) {
     switch (event.key) {
       case 'ArrowUp':
+        if (this.direction === Direction.Down) {
+          return;
+        }
         this.direction = Direction.Up;
         break;
       case 'ArrowDown':
+        if (this.direction === Direction.Up) {
+          return;
+        }
         this.direction = Direction.Down;
         break;
       case 'ArrowLeft':
+        if (this.direction === Direction.Right) {
+          return;
+        }
         this.direction = Direction.Left;
         break;
       case 'ArrowRight':
+        if (this.direction === Direction.Left) {
+          return;
+        }
         this.direction = Direction.Right;
         break;
     }
@@ -42,11 +57,37 @@ export class AppComponent implements OnInit {
   }
 
   startGame() {
+    const gameTimer = Observable.timer(1000, 400);
+    gameTimer.subscribe(() => this.movePlayer());
+  }
+
+  movePlayer() {
+    const tail = this.snake[0];
+    this.snake.splice(0, 1);
+    this.rows[ tail.row ].cells[ tail.cell ] = Cell.Blank;
+    const nextHead = this.getNextHead();
+    this.snake.push(nextHead);
+    this.rows[nextHead.row].cells[ nextHead.cell ] = Cell.Snake;
+  }
+
+  private getNextHead(): Snake {
+    const currentHead = this.snake[this.snake.length - 1];
+    switch (this.direction) {
+      case Direction.Down:
+        return new Snake(currentHead.row + 1, currentHead.cell);
+      case Direction.Up:
+        return new Snake(currentHead.row - 1, currentHead.cell);
+      case Direction.Left:
+        return new Snake(currentHead.row, currentHead.cell - 1);
+      case Direction.Right:
+        return new Snake(currentHead.row, currentHead.cell + 1);
+    }
   }
 
   private initPlayerModel() {
     for (let f = 0; f < 4; f++) {
       this.rows[10].cells[10 - f] = Cell.Snake;
+      this.snake.push(new Snake(10, 10 - f));
     }
   }
 
