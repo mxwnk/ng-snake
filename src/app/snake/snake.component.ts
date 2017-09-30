@@ -63,17 +63,17 @@ export class SnakeComponent implements OnInit {
     this.setNewFruit();
   }
 
-  startGame() {
+  public startGame() {
     this.running = true;
     this.gameSubscription = Observable.timer(1000, 100).subscribe(() => this.movePlayer());
   }
 
-  stopGame() {
+  public stopGame() {
     this.running = false;
     this.gameSubscription.unsubscribe();
   }
 
-  movePlayer() {
+  private movePlayer() {
     const tail = this.snake[0];
     const nextHead = this.getNextHead();
     if (this.isGameOver(nextHead)) {
