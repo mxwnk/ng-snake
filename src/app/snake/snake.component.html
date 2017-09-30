@@ -1,8 +1,8 @@
-<div class="card">
+<div class="card" style="border: 0">
 
   <h1 class="text-center">Snake</h1>
 
-  <div class="game">
+  <div class="game card" style="padding: 10px;">
     <div class="row" *ngFor="let row of rows">
       <div class="cell" *ngFor="let cell of row.cells" [class.snake]="cell === 0" [class.fruit]="cell === 1" [class.blank]="cell === 2">
       </div>
