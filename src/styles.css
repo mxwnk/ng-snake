@@ -21,18 +21,14 @@
     height: 25px;
 }
 
-.start-game-button{
-    margin-top: 30px;
-}
-
 .snake{
-    background: red;
+    background: #d9534f;
 }
 
 .blank{
-    background: black;
+    background: #292b2c;
 }
 
 .fruit{
-    background: green;
+    background: #28a745; 
 }

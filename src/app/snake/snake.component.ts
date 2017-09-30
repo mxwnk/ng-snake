@@ -55,7 +55,7 @@ export class SnakeComponent implements OnInit {
     }
   }
 
-  constructor(private modalService: BsModalService) {}
+  constructor(private modalService: BsModalService) { }
 
   ngOnInit(): void {
     this.initGameField();
@@ -66,6 +66,12 @@ export class SnakeComponent implements OnInit {
   public startGame() {
     this.running = true;
     this.gameSubscription = Observable.timer(1000, 100).subscribe(() => this.movePlayer());
+  }
+
+  public restartGame() {
+    this.initGameField();
+    this.initPlayerModel();
+    this.setNewFruit();
   }
 
   public stopGame() {
@@ -83,7 +89,7 @@ export class SnakeComponent implements OnInit {
     }
     if (this.foundFruit(nextHead)) {
       this.setNewFruit();
-    }else {
+    } else {
       this.snake.splice(0, 1);
       this.rows[tail.row].cells[tail.cell] = Cell.Blank;
     }
@@ -116,10 +122,13 @@ export class SnakeComponent implements OnInit {
   }
 
   private isGameOver(nextHead: Snake): boolean {
-    if (nextHead.cell > this.cellCount || nextHead.cell < 0) {
+    if (nextHead.row > this.rowsCount || nextHead.row < 0) {
       return true;
     }
-    if (nextHead.row > this.rowsCount || nextHead.row < 0) {
+    if (nextHead.cell === null || nextHead.cell > this.cellCount || nextHead.cell < 0) {
+      return true;
+    }
+    if (this.rows[nextHead.row] === undefined || this.rows[nextHead.row].cells === null) {
       return true;
     }
     const nextGameField = this.rows[nextHead.row].cells[nextHead.cell];
@@ -138,6 +147,7 @@ export class SnakeComponent implements OnInit {
       this.rows[10].cells[10 - f] = Cell.Snake;
       this.snake.push(new Snake(10, 10 - f));
     }
+    this.direction = Direction.Left;
   }
 
   private initGameField() {

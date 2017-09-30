@@ -1,14 +1,19 @@
-<h1 class="text-center">Snake</h1>
+<div class="card">
 
-<div class="game">
-  <div class="row" *ngFor="let row of rows">
-    <div class="cell" *ngFor="let cell of row.cells" 
-        [class.snake]="cell === 0"
-        [class.fruit]="cell === 1"
-        [class.blank]="cell === 2">
+  <h1 class="text-center">Snake</h1>
+
+  <div class="game">
+    <div class="row" *ngFor="let row of rows">
+      <div class="cell" *ngFor="let cell of row.cells" [class.snake]="cell === 0" [class.fruit]="cell === 1" [class.blank]="cell === 2">
+      </div>
     </div>
   </div>
-</div>
 
-<button *ngIf="!running" class="btn btn-primary start-game-button" (click)="startGame()">Start</button>
-<button *ngIf="running" class="btn btn-warning start-game-button" (click)="stopGame()">Stop</button>
+  <div style="margin: 30px auto">
+    <button *ngIf="!running" class="btn btn-success" (click)="startGame()">Start</button>
+    <button *ngIf="running" class="btn btn-info" (click)="stopGame()">Stop</button>
+    <button class="btn btn-warning" (click)="restartGame()">Restart</button>
+  </div>
+
+
+</div>
