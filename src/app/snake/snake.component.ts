@@ -1,10 +1,10 @@
-import { Observable } from 'rxjs/Observable';
-import { Subscription } from 'rxjs/Subscription';
-import { Snake } from './../model/snake';
-import { Row } from './../model/row';
+import { Snake } from '../model/snake';
+import { Row } from '../model/row';
 import { Component, OnInit, HostListener } from '@angular/core';
-import { Direction } from '../model/direction';
 import { Cell } from '../model/cell';
+import { Direction } from '../model/direction';
+import { Observable } from 'rxjs/Rx';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-snake',
