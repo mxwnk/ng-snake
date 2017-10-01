@@ -12,6 +12,7 @@ import { Score } from '../model/score';
 export class GameOverComponent implements OnInit {
 
   public player: string;
+  public score: number;
 
   constructor(public gameOverModalRef: BsModalRef, private http: HttpClient) { }
 
@@ -22,7 +23,7 @@ export class GameOverComponent implements OnInit {
     const url = `${environment.api}/scores`;
     const score = new Score();
     score.name = this.player;
-    score.score = 123;
+    score.score = this.score;
     this.http.post(url, score)
       .subscribe(() => this.gameOverModalRef.hide());
   }

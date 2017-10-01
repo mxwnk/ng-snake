@@ -84,6 +84,7 @@ export class SnakeComponent implements OnInit {
     const nextHead = this.getNextHead();
     if (this.isGameOver(nextHead)) {
       this.gameOverModal = this.modalService.show(GameOverComponent);
+      this.gameOverModal.content.score = this.snake.length;
       this.stopGame();
       return;
     }
