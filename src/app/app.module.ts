@@ -8,6 +8,7 @@ import { SnakeComponent } from './snake/snake.component';
 import { GameOverComponent } from './game-over/game-over.component';
 import { LeaderBoardComponent } from './leader-board/leader-board.component';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
+    FormsModule,
     ModalModule.forRoot()
   ],
   providers: [],

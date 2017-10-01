@@ -5,7 +5,12 @@
     </button>
 </div>
 <div class="modal-body">
+    <div class="form-group">
+      <label for="exampleInputEmail1">Player Name</label>
+      <input type="text" class="form-control" placeholder="Jon Doe" [(ngModel)]="player">
+    </div>
 </div>
 <div class="modal-footer">
-  <button type="button" class="btn btn-primary" (click)="gameOverModalRef.hide()">Ok</button>
+  <button type="button" class="btn btn-primary" (click)="submit()">Submit Highscore</button>
+  <button type="button" class="btn btn-warning" (click)="gameOverModalRef.hide()">Cancel</button>
 </div>
