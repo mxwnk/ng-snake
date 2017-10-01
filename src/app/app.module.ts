@@ -7,6 +7,7 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { SnakeComponent } from './snake/snake.component';
 import { GameOverComponent } from './game-over/game-over.component';
 import { LeaderBoardComponent } from './leader-board/leader-board.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { LeaderBoardComponent } from './leader-board/leader-board.component';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     ModalModule.forRoot()
   ],

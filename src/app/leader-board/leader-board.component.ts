@@ -1,4 +1,7 @@
+import { Score } from './../model/score';
+import { environment } from './../../environments/environment';
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-leader-board',
@@ -7,9 +10,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LeaderBoardComponent implements OnInit {
 
-  constructor() { }
+  scores: Score[];
+
+  constructor(private http: HttpClient) { }
 
   ngOnInit() {
+    const url = `${environment.api}/scores`;
+    this.http
+      .get(url)
+      .map(data => data as Score[])
+      .subscribe((scores: Score[]) => this.scores = scores);
   }
 
 }

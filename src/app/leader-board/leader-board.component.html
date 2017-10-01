@@ -1,3 +1,17 @@
-<p>
-  leader-board works!
-</p>
+<h1 class="text-center">Current Leader Board</h1>
+<div class="container card" style="margin-top: 20px;">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Score</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let score of scores">
+        <th>{{score.name}}</th>
+        <td>{{score.score}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
