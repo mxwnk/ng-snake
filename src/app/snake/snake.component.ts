@@ -126,7 +126,7 @@ export class SnakeComponent implements OnInit {
     if (nextHead.row > this.rowsCount || nextHead.row < 0) {
       return true;
     }
-    if (nextHead.cell === null || nextHead.cell > this.cellCount || nextHead.cell < 0) {
+    if (nextHead.cell === null || nextHead.cell > this.cellCount - 1 || nextHead.cell < 0) {
       return true;
     }
     if (this.rows[nextHead.row] === undefined || this.rows[nextHead.row].cells === null) {
