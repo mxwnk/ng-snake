@@ -1,6 +1,8 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { HttpClientModule } from '@angular/common/http';
+import { async, ComponentFixture, TestBed, inject } from '@angular/core/testing';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { LeaderBoardComponent } from './leader-board.component';
+import { HttpClient } from '@angular/common/http';
 
 describe('LeaderBoardComponent', () => {
   let component: LeaderBoardComponent;
@@ -8,9 +10,15 @@ describe('LeaderBoardComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LeaderBoardComponent ]
+      declarations: [
+        LeaderBoardComponent
+      ],
+      imports: [
+        HttpClientTestingModule,
+        HttpClientModule
+      ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -19,7 +27,13 @@ describe('LeaderBoardComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+  it(`should create`,
+    // 1. declare as async test since the HttpClient works with Observables
+    async(
+      // 2. inject HttpClient and HttpTestingController into the test
+      inject([HttpClient], (http: HttpClient) => {
+        expect(component).toBeTruthy();
+      })
+    )
+  );
 });
