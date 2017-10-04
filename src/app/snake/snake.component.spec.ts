@@ -6,6 +6,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SnakeComponent } from './snake.component';
 import { Direction } from '../model/direction';
+import { Cell } from '../model/cell';
 
 describe('SnakeComponent', () => {
   let component: SnakeComponent;
@@ -41,6 +42,17 @@ describe('SnakeComponent', () => {
     expect(component.cellCount).toBe(20);
     expect(component.cellCount).toBe(20);
     expect(component.rows.length).toBe(20);
+  });
+
+  it('should set one fruit', () => {
+    const fruitCells: Cell[] = [];
+
+    component.rows.forEach(r => {
+      const fruits = r.cells.filter(c => c === Cell.Fruit);
+      fruits.forEach(f => fruitCells.push(f));
+    });
+
+    expect(fruitCells.length).toBe(1);
   });
 
   it('should move left', () => {
