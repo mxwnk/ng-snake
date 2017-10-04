@@ -65,7 +65,7 @@ export class SnakeComponent implements OnInit {
 
   public startGame() {
     this.running = true;
-    this.gameSubscription = Observable.timer(1000, 100).subscribe(() => this.movePlayer());
+    this.gameSubscription = Observable.timer(1000, 100).subscribe(() => this.moveOneStep());
   }
 
   public restartGame() {
@@ -79,7 +79,7 @@ export class SnakeComponent implements OnInit {
     this.gameSubscription.unsubscribe();
   }
 
-  private movePlayer() {
+  public moveOneStep() {
     const tail = this.snake[0];
     const nextHead = this.getNextHead();
     if (this.isGameOver(nextHead)) {
