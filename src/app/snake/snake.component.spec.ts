@@ -34,4 +34,11 @@ describe('SnakeComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  it('should init', () => {
+    expect(component.snake.length).toBe(4);
+    expect(component.cellCount).toBe(20);
+    expect(component.cellCount).toBe(20);
+    expect(component.rows.length).toBe(20);
+  });
+
 });
