@@ -7,8 +7,9 @@ import { HttpClient } from '@angular/common/http';
 describe('LeaderBoardComponent', () => {
   let component: LeaderBoardComponent;
   let fixture: ComponentFixture<LeaderBoardComponent>;
+  let httpMock: HttpTestingController;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [
         LeaderBoardComponent
@@ -17,23 +18,15 @@ describe('LeaderBoardComponent', () => {
         HttpClientTestingModule,
         HttpClientModule
       ]
-    })
-      .compileComponents();
-  }));
-
-  beforeEach(() => {
+    }).compileComponents();
     fixture = TestBed.createComponent(LeaderBoardComponent);
+    httpMock = TestBed.get(HttpTestingController);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
-  it(`should create`,
-    // 1. declare as async test since the HttpClient works with Observables
-    async(
-      // 2. inject HttpClient and HttpTestingController into the test
-      inject([HttpClient], (http: HttpClient) => {
-        expect(component).toBeTruthy();
-      })
-    )
-  );
+  it(`should get scores`, async(() => {
+    component.ngOnInit();
+    const request = httpMock.expectOne('http://localhost:3000/scores');
+  }));
+
 });
