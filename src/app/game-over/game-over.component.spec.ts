@@ -1,10 +1,12 @@
+import { Observable } from 'rxjs/Rx';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
-import { async, ComponentFixture, TestBed, inject } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed, inject, tick } from '@angular/core/testing';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { GameOverComponent } from './game-over.component';
+import { fakeAsync } from '@angular/core/testing';
 
 describe('GameOverComponent', () => {
   let component: GameOverComponent;
@@ -24,7 +26,7 @@ describe('GameOverComponent', () => {
         HttpClientTestingModule
       ],
       providers: [
-        BsModalRef
+        { provide: BsModalRef, useClass: BsModalRefStub }
       ]
     }).compileComponents();
   }));
@@ -40,7 +42,7 @@ describe('GameOverComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it ('should submit game info', () => {
+  it('should submit game info', () => {
     component.player = playerName;
     component.score = playerScore;
 
@@ -51,4 +53,25 @@ describe('GameOverComponent', () => {
     expect(request.request.body.score).toBe(playerScore);
   });
 
+  it('should close modal on success', fakeAsync(inject([BsModalRef, HttpClient], (bsModalRefStub, httpClient) => {
+    spyOn(httpClient, 'post').and.returnValue(Observable.of(true));
+    expect(bsModalRefStub.isHidden).toBe(false);
+
+    component.submit();
+    tick();
+
+
+    expect(bsModalRefStub.isHidden).toBe(true);
+  })));
+
 });
+
+class BsModalRefStub {
+
+  public isHidden = false;
+
+  public hide() {
+    this.isHidden = true;
+  }
+
+}

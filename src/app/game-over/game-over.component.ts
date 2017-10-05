@@ -25,7 +25,7 @@ export class GameOverComponent implements OnInit {
     score.name = this.player;
     score.score = this.score;
     this.http.post(url, score)
-      .subscribe(() => this.gameOverModalRef.hide());
+      .subscribe(() => this.gameOverModalRef.hide(), err => console.log(err));
   }
 
 }
