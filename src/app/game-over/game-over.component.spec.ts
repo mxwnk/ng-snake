@@ -1,14 +1,17 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed, inject } from '@angular/core/testing';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { GameOverComponent } from './game-over.component';
-import { MockBackend } from '@angular/http/testing';
 
 describe('GameOverComponent', () => {
   let component: GameOverComponent;
   let fixture: ComponentFixture<GameOverComponent>;
+  let httpMock: HttpTestingController;
+  const playerName = 'player1';
+  const playerScore = 432;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -17,18 +20,18 @@ describe('GameOverComponent', () => {
       ],
       imports: [
         FormsModule,
-        ReactiveFormsModule
+        HttpClientModule,
+        HttpClientTestingModule
       ],
       providers: [
-        BsModalRef,
-        { provide: HttpClient, useValue: MockBackend }
+        BsModalRef
       ]
-    })
-      .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(GameOverComponent);
+    httpMock = TestBed.get(HttpTestingController);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -36,4 +39,16 @@ describe('GameOverComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it ('should submit game info', () => {
+    component.player = playerName;
+    component.score = playerScore;
+
+    component.submit();
+
+    const request = httpMock.expectOne('http://localhost:3000/scores');
+    expect(request.request.body.name).toBe(playerName);
+    expect(request.request.body.score).toBe(playerScore);
+  });
+
 });
