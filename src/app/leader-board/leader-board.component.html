@@ -1,5 +1,6 @@
 <h1 class="text-center">Current Leader Board</h1>
-<div class="container card" style="margin-top: 20px;">
+<div *ngIf="isLoading" class="loader"></div>
+<div *ngIf="!isLoading" class="container card" style="margin-top: 20px;">
   <table class="table">
     <thead>
       <tr>

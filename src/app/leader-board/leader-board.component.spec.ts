@@ -37,13 +37,28 @@ describe('LeaderBoardComponent', () => {
     const request = httpMock.expectOne('http://localhost:3000/scores');
   }));
 
-  it('should save scores from httpClient', fakeAsync((inject([HttpClient], (httpClient) => {
-    spyOn(httpClient, 'get').and.returnValue(Observable.of(scores));
+  it('should save scores from httpClient', fakeAsync(
+    (inject([HttpClient], (httpClient) => {
+      spyOn(httpClient, 'get').and.returnValue(Observable.of(scores));
 
-    component.ngOnInit();
-    tick();
+      component.ngOnInit();
+      tick();
 
-    expect(component.scores).toBe(scores);
-  }))));
+      expect(component.scores).toBe(scores);
+    }))
+  ));
+
+  it('should loading while fetching', () => {
+    // expect(component.isLoading).toBe(true);
+  });
+
+  it('should loading while fetching', fakeAsync(
+    (inject([HttpClient], (httpClient) => {
+      spyOn(httpClient, 'get').and.returnValue(Observable.of(scores));
+      // expect(component.isLoading).toBe(false);
+
+      component.ngOnInit();
+    }))
+  ));
 
 });

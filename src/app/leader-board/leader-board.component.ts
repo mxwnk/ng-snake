@@ -11,15 +11,20 @@ import { HttpClient } from '@angular/common/http';
 export class LeaderBoardComponent implements OnInit {
 
   scores: Score[];
+  isLoading = false;
 
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
+    this.isLoading = true;
     const url = `${environment.api}/scores`;
     this.http
       .get(url)
       .map(data => data as Score[])
-      .subscribe((scores: Score[]) => this.scores = scores);
+      .subscribe((scores: Score[]) => {
+        this.scores = scores;
+        this.isLoading = false;
+      });
   }
 
 }
