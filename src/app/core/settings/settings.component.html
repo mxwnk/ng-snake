@@ -1,0 +1,10 @@
+<div class="container">
+  <h1 class="text-center">Settings</h1>
+  <div class="form-group" style="margin-left: 200px; margin-top: 30px">
+    <h3>Game speed: <b>{{speed}}</b></h3>
+    <input type="range" [(ngModel)]="speed" min="10" max="100">
+    <div style="margin-top: 40px;">
+      <button class="btn btn-primary" (click)="save()">Submit</button>
+    </div>
+  </div>
+</div>

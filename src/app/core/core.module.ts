@@ -4,6 +4,7 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule  } from '@angular/forms';
+import { SettingsComponent } from './settings/settings.component';
 
 @NgModule({
     imports: [
@@ -11,11 +12,13 @@ import { FormsModule  } from '@angular/forms';
     ],
     declarations: [
         NavBarComponent,
-        LeaderBoardComponent
+        LeaderBoardComponent,
+        SettingsComponent
     ],
     exports: [
         NavBarComponent,
-        LeaderBoardComponent
+        LeaderBoardComponent,
+        SettingsComponent
     ]
 })
 export class CoreModule { }
