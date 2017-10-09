@@ -1,37 +1,31 @@
-import { SharedModule } from './shared/shared.module';
-import { AppRoutingModule } from './routing/app.routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { AppComponent } from './app.component';
-import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { SnakeComponent } from './snake/snake.component';
 import { LeaderBoardComponent } from './leader-board/leader-board.component';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
-import { SnakeModule } from '@app/snake';
 import { CommonModule } from '@angular/common';
+
+import { SnakeModule } from '@app/snake';
+import { CoreModule } from '@app/core';
+import { SharedModule } from '@app/shared';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavBarComponent,
     LeaderBoardComponent
   ],
   imports: [
     BrowserModule,
-    CommonModule,
     HttpClientModule,
-    AppRoutingModule,
     SnakeModule,
-    FormsModule,
     SharedModule,
+    CommonModule,
+    CoreModule,
     ModalModule.forRoot()
   ],
   providers: [],
-  bootstrap: [AppComponent],
-  exports: [
-    CommonModule
-  ]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
