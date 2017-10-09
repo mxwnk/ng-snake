@@ -9,7 +9,7 @@ import { SettingsService } from '@app/shared';
 })
 export class SettingsComponent implements OnInit {
 
-  speed: Number = 50;
+  speed: Number;
 
   constructor(private settingsService: SettingsService) { }
 
