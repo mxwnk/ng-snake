@@ -44,8 +44,8 @@ describe('SnakeComponent', () => {
     expect(component.rows.length).toBe(20);
   });
 
-  it ('should initialize new player model on restart', () => {
-    component.restartGame();
+  it ('should initialize new player model on reset', () => {
+    component.resetGame();
 
     expect(component.snake.length).toBe(4);
   });
