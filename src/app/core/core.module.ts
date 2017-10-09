@@ -1,3 +1,4 @@
+import { LeaderBoardComponent } from './leader-board/leader-board.component';
 import { SharedModule } from './../shared/shared.module';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { NgModule } from '@angular/core';
@@ -9,10 +10,12 @@ import { FormsModule  } from '@angular/forms';
         SharedModule
     ],
     declarations: [
-        NavBarComponent
+        NavBarComponent,
+        LeaderBoardComponent
     ],
     exports: [
-        NavBarComponent
+        NavBarComponent,
+        LeaderBoardComponent
     ]
 })
 export class CoreModule { }

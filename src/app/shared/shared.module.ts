@@ -1,18 +1,18 @@
-import { AppRoutingModule } from './../routing/app.routing.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule  } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
-    AppRoutingModule
+    RouterModule
   ],
   exports: [
     CommonModule,
     FormsModule,
-    AppRoutingModule
+    RouterModule
   ]
 })
 export class SharedModule {

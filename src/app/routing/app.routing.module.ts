@@ -1,7 +1,7 @@
 import { SnakeComponent } from './../snake/snake.component';
 import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { LeaderBoardComponent } from '../leader-board/leader-board.component';
+import { LeaderBoardComponent } from '@app/core';
 
 const routes: Routes = [
     { path: '', component: SnakeComponent},

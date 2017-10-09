@@ -1,5 +1,5 @@
-import { Score } from './../model/score';
-import { environment } from './../../environments/environment';
+import { Score } from '@app/model';
+import { environment } from '@env/environment';
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
