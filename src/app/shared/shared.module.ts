@@ -1,3 +1,4 @@
+import { SettingsService } from './settings/settings.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule  } from '@angular/forms';
@@ -12,7 +13,10 @@ import { RouterModule } from '@angular/router';
   exports: [
     CommonModule,
     FormsModule,
-    RouterModule
+    RouterModule,
+  ],
+  providers: [
+    SettingsService
   ]
 })
 export class SharedModule {
