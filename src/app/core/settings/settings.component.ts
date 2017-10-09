@@ -1,4 +1,6 @@
+import { Observable } from 'rxjs/Rx';
 import { Component, OnInit } from '@angular/core';
+import { SettingsService } from '@app/shared';
 
 @Component({
   selector: 'app-settings',
@@ -9,13 +11,14 @@ export class SettingsComponent implements OnInit {
 
   speed: Number = 50;
 
-  constructor() { }
+  constructor(private settingsService: SettingsService) { }
 
   ngOnInit() {
+    this.speed = this.settingsService.getSpeed();
   }
 
   save() {
-    console.log(this.speed);
+    this.settingsService.saveSpeed(this.speed);
   }
 
 }
