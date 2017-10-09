@@ -20,11 +20,20 @@ export class SnakeComponent implements OnInit {
   running = false;
   gameSubscription: Subscription;
   direction: Direction = Direction.Left;
+  gameOver = false;
+  isGamePaused = true;
   gameOverModal: BsModalRef;
 
   @HostListener('window:keydown', ['$event'])
   keyboardInput(event: KeyboardEvent) {
     switch (event.key) {
+      case ' ':
+        if (this.isGamePaused) {
+          this.startGame();
+        }else {
+          this.pauseGame();
+        }
+        break;
       case 'ArrowUp':
         if (this.direction === Direction.Down) {
           return;
@@ -72,9 +81,11 @@ export class SnakeComponent implements OnInit {
     this.initGameField();
     this.initPlayerModel();
     this.setNewFruit();
+    this.gameOver = false;
   }
 
-  public stopGame() {
+  public pauseGame() {
+    this.isGamePaused = true;
     this.running = false;
     this.gameSubscription.unsubscribe();
   }
@@ -85,7 +96,8 @@ export class SnakeComponent implements OnInit {
     if (this.isGameOver(nextHead)) {
       this.gameOverModal = this.modalService.show(GameOverComponent);
       this.gameOverModal.content.score = this.snake.length;
-      this.stopGame();
+      this.pauseGame();
+      this.gameOver = true;
       return;
     }
     if (this.foundFruit(nextHead)) {

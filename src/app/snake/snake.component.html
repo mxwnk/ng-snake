@@ -11,9 +11,9 @@
   </div>
 
   <div style="margin: 30px auto">
-    <button *ngIf="!running" class="btn btn-success" (click)="startGame()">Start</button>
-    <button *ngIf="running" class="btn btn-info" (click)="stopGame()">Stop</button>
-    <button class="btn btn-warning" (click)="restartGame()">Restart</button>
+    <button [disabled]="running || gameOver" class="btn btn-success" (click)="startGame()">Start</button>
+    <button [disabled]="!running" class="btn btn-info" (click)="pauseGame()">Pause</button>
+    <button [disabled]="noGamePlayed && !running" class="btn btn-warning" (click)="restartGame()">Reset</button>
   </div>
 
 
