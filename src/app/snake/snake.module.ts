@@ -1,14 +1,11 @@
-import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
-import { NgModule, Optional, SkipSelf } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { GameOverComponent } from './game-over/game-over.component';
 import { SnakeComponent } from './snake.component';
-
+import { SharedModule } from '@app/shared';
 
 @NgModule({
     imports: [
-        CommonModule,
-        FormsModule
+        SharedModule
     ],
     entryComponents: [
         GameOverComponent

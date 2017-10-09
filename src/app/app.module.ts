@@ -1,3 +1,4 @@
+import { SharedModule } from './shared/shared.module';
 import { AppRoutingModule } from './routing/app.routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -24,6 +25,7 @@ import { CommonModule } from '@angular/common';
     AppRoutingModule,
     SnakeModule,
     FormsModule,
+    SharedModule,
     ModalModule.forRoot()
   ],
   providers: [],
