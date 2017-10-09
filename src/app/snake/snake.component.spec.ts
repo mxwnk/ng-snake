@@ -44,6 +44,12 @@ describe('SnakeComponent', () => {
     expect(component.rows.length).toBe(20);
   });
 
+  it ('should initialize new player model on restart', () => {
+    component.restartGame();
+
+    expect(component.snake.length).toBe(4);
+  });
+
   it('should set one fruit', () => {
     const fruitCells: Cell[] = [];
 

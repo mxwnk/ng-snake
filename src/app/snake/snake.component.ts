@@ -144,6 +144,7 @@ export class SnakeComponent implements OnInit {
   }
 
   private initPlayerModel() {
+    this.snake = [];
     for (let f = 0; f < 4; f++) {
       this.rows[10].cells[10 - f] = Cell.Snake;
       this.snake.push(new Snake(10, 10 - f));
