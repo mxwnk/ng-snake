@@ -1,7 +1,7 @@
 <h1 class="text-center">Current Leader Board</h1>
 <div *ngIf="isLoading" class="loader"></div>
 <div *ngIf="!isLoading" class="container card" style="margin-top: 20px;">
-  <table class="table">
+  <table class="table" @flyInOut>
     <thead>
       <tr>
         <th>Name</th>

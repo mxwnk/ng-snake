@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { SnakeComponent } from './snake/snake.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { SnakeModule } from '@app/snake';
 import { CoreModule } from '@app/core';
@@ -17,6 +18,7 @@ import { SharedModule } from '@app/shared';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     HttpClientModule,
     SnakeModule,
     SharedModule,
