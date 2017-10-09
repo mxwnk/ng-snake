@@ -3,26 +3,26 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class SettingsService {
 
-  private speed: Number;
+  private speed: number;
 
   constructor() {
     this.initializeSpeed();
   }
 
-  getSpeed(): Number {
+  getSpeed(): number {
     return this.speed;
   }
 
-  saveSpeed(newSpeed: Number) {
+  saveSpeed(newSpeed: number) {
     this.speed = newSpeed;
+    console.log('Save speed ' + newSpeed.toString());
     localStorage.setItem('speed', newSpeed.toString());
   }
 
   private initializeSpeed() {
     const savedSpeed = localStorage.getItem('speed');
-    console.log(savedSpeed);
     if (savedSpeed !== null) {
-      this.speed = parseInt(savedSpeed, 16);
+      this.speed = parseInt(savedSpeed, 10);
     } else {
       this.speed = 50;
     }

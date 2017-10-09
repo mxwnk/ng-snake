@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/Rx';
 import { Subscription } from 'rxjs/Subscription';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
+import { SettingsService } from '@app/shared';
 
 @Component({
   selector: 'app-snake',
@@ -24,6 +25,7 @@ export class SnakeComponent implements OnInit {
   isNewGame = true;
   isGamePaused = true;
   gameOverModal: BsModalRef;
+  speed = 0;
 
   @HostListener('window:keydown', ['$event'])
   keyboardInput(event: KeyboardEvent) {
@@ -65,19 +67,21 @@ export class SnakeComponent implements OnInit {
     }
   }
 
-  constructor(private modalService: BsModalService) { }
+  constructor(private modalService: BsModalService, private settingsService: SettingsService) { }
 
   ngOnInit(): void {
     this.initGameField();
     this.initPlayerModel();
     this.setNewFruit();
+    this.speed = this.settingsService.getSpeed();
   }
 
   public startGame() {
     this.isGamePaused = false;
     this.isNewGame = false;
     this.running = true;
-    this.gameSubscription = Observable.timer(1000, 100).subscribe(() => this.moveOneStep());
+    const gameSpeed = 150 - this.speed;
+    this.gameSubscription = Observable.timer(1000, gameSpeed).subscribe(() => this.moveOneStep());
   }
 
   public resetGame() {

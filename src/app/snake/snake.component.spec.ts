@@ -7,6 +7,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { SnakeComponent } from './snake.component';
 import { Direction } from '../model/direction';
 import { Cell } from '../model/cell';
+import { SettingsService } from '@app/shared';
 
 describe('SnakeComponent', () => {
   let component: SnakeComponent;
@@ -22,6 +23,7 @@ describe('SnakeComponent', () => {
         FormsModule
       ],
       providers: [
+        SettingsService,
         { provide: BsModalService, useValue: true }
       ],
     }).compileComponents();
