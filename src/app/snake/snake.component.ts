@@ -41,6 +41,9 @@ export class SnakeComponent implements OnInit {
         if (this.direction === Direction.Right) {
           return;
         }
+        if (this.running === false) {
+          this.startGame();
+        }
         this.direction = Direction.Left;
         break;
       case 'ArrowRight':
