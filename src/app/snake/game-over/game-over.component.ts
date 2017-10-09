@@ -1,8 +1,8 @@
-import { environment } from './../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 import { Component, OnInit } from '@angular/core';
-import { Score } from '../model/score';
+import { Score } from '@app/model';
+import { environment } from '@env/environment';
 
 @Component({
   selector: 'app-game-over',

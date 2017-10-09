@@ -1,9 +1,6 @@
-import { GameOverComponent } from './../game-over/game-over.component';
-import { Snake } from '../model/snake';
-import { Row } from '../model/row';
+import { GameOverComponent } from './game-over/game-over.component';
 import { Component, OnInit, HostListener } from '@angular/core';
-import { Cell } from '../model/cell';
-import { Direction } from '@app/model';
+import { Direction, Cell, Snake, Row } from '@app/model';
 import { Observable } from 'rxjs/Rx';
 import { Subscription } from 'rxjs/Subscription';
 import { BsModalService } from 'ngx-bootstrap/modal';

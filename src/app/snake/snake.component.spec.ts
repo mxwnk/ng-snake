@@ -1,6 +1,6 @@
 import { Snake } from './../model/snake';
 import { FormsModule } from '@angular/forms';
-import { GameOverComponent } from './../game-over/game-over.component';
+import { GameOverComponent } from './game-over/game-over.component';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
