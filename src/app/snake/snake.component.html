@@ -11,9 +11,9 @@
   </div>
 
   <div style="margin: 30px auto">
-    <button [disabled]="running || gameOver" class="btn btn-success" (click)="startGame()">Start</button>
+    <button [disabled]="running || gameOver" class="btn btn-success" (click)="startGame()">{{!isNewGame ? "Resume" : "Start"}}</button>
     <button [disabled]="!running" class="btn btn-info" (click)="pauseGame()">Pause</button>
-    <button [disabled]="noGamePlayed && !running" class="btn btn-warning" (click)="restartGame()">Reset</button>
+    <button [disabled]="isNewGame" class="btn btn-warning" (click)="resetGame()">Reset</button>
   </div>
 
 

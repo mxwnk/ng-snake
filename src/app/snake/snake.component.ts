@@ -21,6 +21,7 @@ export class SnakeComponent implements OnInit {
   gameSubscription: Subscription;
   direction: Direction = Direction.Left;
   gameOver = false;
+  isNewGame= true;
   isGamePaused = true;
   gameOverModal: BsModalRef;
 
@@ -73,15 +74,19 @@ export class SnakeComponent implements OnInit {
   }
 
   public startGame() {
+    this.isGamePaused = false;
+    this.isNewGame = false;
     this.running = true;
     this.gameSubscription = Observable.timer(1000, 100).subscribe(() => this.moveOneStep());
   }
 
-  public restartGame() {
+  public resetGame() {
+    this.pauseGame();
     this.initGameField();
     this.initPlayerModel();
     this.setNewFruit();
     this.gameOver = false;
+    this.isNewGame = true;
   }
 
   public pauseGame() {
