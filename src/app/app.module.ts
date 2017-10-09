@@ -21,10 +21,10 @@ import { SharedModule } from '@app/shared';
     BrowserAnimationsModule,
     HttpClientModule,
     SnakeModule,
-    SharedModule,
     AppRoutingModule,
     CommonModule,
     CoreModule,
+    SharedModule,
     ModalModule.forRoot()
   ],
   providers: [],
