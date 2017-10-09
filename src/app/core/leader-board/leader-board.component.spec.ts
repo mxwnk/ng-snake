@@ -4,7 +4,7 @@ import { async, ComponentFixture, TestBed, inject, tick, fakeAsync } from '@angu
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { LeaderBoardComponent } from './leader-board.component';
 import { HttpClient } from '@angular/common/http';
-import { Score } from '../model/score';
+import { Score } from '@app/model';
 
 describe('LeaderBoardComponent', () => {
   let component: LeaderBoardComponent;
