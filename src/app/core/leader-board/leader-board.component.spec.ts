@@ -48,17 +48,4 @@ describe('LeaderBoardComponent', () => {
     }))
   ));
 
-  it('should loading while fetching', () => {
-    // expect(component.isLoading).toBe(true);
-  });
-
-  it('should loading while fetching', fakeAsync(
-    (inject([HttpClient], (httpClient) => {
-      spyOn(httpClient, 'get').and.returnValue(Observable.of(scores));
-      // expect(component.isLoading).toBe(false);
-
-      component.ngOnInit();
-    }))
-  ));
-
 });
